@@ -3,33 +3,23 @@ using System.Diagnostics;
 
 namespace ConsoleApp.Test {
     internal class Program {
-        static async void Main(string[] args) {
-
-
-
+        static void Main(string[] args) {
+            //This is only to serve
 
             // Create the source, if it does not already exist.
-            if(!EventLog.SourceExists("MySource")) {
-                //An event log source should not be created and immediately used.
-                //There is a latency time to enable the source, it should be created
-                //prior to executing the application that uses the source.
-                //Execute this sample a second time to use the new source.
-                EventLog.CreateEventSource("MySource", "MyNewLog");
+            const string Source = "ConsoleApp.Task.Test.Master";
+            if(!EventLog.SourceExists(Source)) {
+                EventLog.CreateEventSource(Source, "MyNewLog");
                 Console.WriteLine("CreatedEventSource");
                 Console.WriteLine("Exiting, execute the application a second time to use the source.");
-                // The source is created.  Exit the application to allow it to be registered.
-                return;
+                return 1;
             }
-
-
-
-
 
 
             // Create an EventLog instance and assign its source.
             
             EventLog myLog = new EventLog();
-            myLog.Source = "MySource";
+            myLog.Source = Source;
 
             // Write an informational entry to the event log.
             myLog.WriteEntry("Writing to event log.");
