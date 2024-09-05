@@ -1,9 +1,8 @@
-﻿using System.Threading.Tasks;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace ConsoleApp.Test {
     internal class Program {
-        static void Main(string[] args) {
+        static int Main(string[] args) {
             //This is only to serve
 
             // Create the source, if it does not already exist.
@@ -15,17 +14,13 @@ namespace ConsoleApp.Test {
                 return 1;
             }
 
-
             // Create an EventLog instance and assign its source.
-            
             EventLog myLog = new EventLog();
             myLog.Source = Source;
 
             // Write an informational entry to the event log.
             myLog.WriteEntry("Writing to event log.");
-
-
-
+            return 0;
         }
     }
 }
